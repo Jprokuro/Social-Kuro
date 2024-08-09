@@ -1,0 +1,159 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Social Media</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .header {
+            background-color: #4267B2;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            height: 100vh;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #ccc;
+        }
+        .sidebar ul li:hover {
+            background-color: #f0f2f5;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            background-color: #e9ebee;
+            height: 100vh;
+            overflow-y: scroll;
+        }
+        .post {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .post h3 {
+            margin-top: 0;
+        }
+        .post p {
+            margin-bottom: 0;
+        }
+        .content-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .content-header h2 {
+            margin: 0;
+        }
+        .content-header button {
+            padding: 10px 20px;
+            background-color: #4267B2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .content-header button:hover {
+            background-color: #365899;
+        }
+        .post-form {
+            margin-top: 20px;
+        }
+        .post-form input[type="file"] {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Social Media Home</h1>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li onclick="navigateHome()">Home</li>
+                <li>Profile</li>
+                <li>Messages</li>
+                <li>Friends</li>
+                <li>Settings</li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <div class="content-header">
+                <h2>News Feed</h2>
+                <button onclick="openPostForm()">Create Post</button>
+            </div>
+
+            <div id="posts">
+                <div class="post">
+                    <h3>User Name</h3>
+                    <p>This is a post content. You can add images, videos, or any other content here.</p>
+                </div>
+                <div class="post">
+                    <h3>User Name</h3>
+                    <p>This is another post. Add more content to fill the page.</p>
+                </div>
+            </div>
+
+            <!-- Post Form -->
+            <div id="post-form" class="post-form" style="display: none;">
+                <h3>Create a New Post</h3>
+                <form id="post-upload-form" action="upload.php" method="post" enctype="multipart/form-data">
+                    <input type="file" name="media" accept="image/*,video/*" required>
+                    <input type="text" name="description" placeholder="Enter a description" required>
+                    <button type="submit">Submit Post</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function navigateHome() {
+            document.getElementById("posts").innerHTML = `
+                <div class="post">
+                    <h3>John Doe</h3>
+                    <p>This is a newly loaded post after clicking Home. Here you can display dynamic content like a news feed.</p>
+                </div>
+                <div class="post">
+                    <h3>Jane Smith</h3>
+                    <p>Another example post. You can continue adding more content or load it from a server using AJAX.</p>
+                </div>
+                <div class="post">
+                    <h3>Emily Johnson</h3>
+                    <p>Here is a third example of a dynamic post, simulating a feed like on Facebook.</p>
+                </div>`;
+        }
+
+        function openPostForm() {
+            document.getElementById("post-form").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
